@@ -1,0 +1,111 @@
+\documentclass[12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{appendix}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{textcomp}
+\graphicspath{{images/}}
+\usepackage[a4paper,width=150mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{epigraph}
+\usepackage[style=authoryear]{biblatex}
+\usepackage{listings}
+\usepackage{tikz}
+\usepackage[utf8]{inputenc}
+\usepackage{tcolorbox}
+
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+
+
+\usetikzlibrary{arrows.meta,
+                chains,
+                positioning,
+                shapes.geometric
+                }
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[]{}
+\addbibresource{references.bib}
+
+\title{Generating mathematical models by help of deep learning}
+\begin{document}
+\begin{titlepage}
+	\centering
+	\includegraphics[width=0.5\textwidth]{logo.png}\par\vspace{1cm}
+	{\scshape\LARGE Bauhaus Universität Weimar \par}
+	\vspace{1cm}
+	{\scshape\Large Special project\par}
+	\vspace{1.5cm}
+	{\huge\bfseries Generating mathematical models by help of deep learning\par}
+	\vspace{2cm}
+	{\Large\itshape Karl Philipp Killian\par}
+	{\Large\itshape Yohannes Gidey Zegeye\par}
+	\vfill
+	supervised by\par
+	Dr. rer. nat. Dmitrii  \textsc{Legatiuk}
+	\par
+    Dipl.-Ing. Anastasiia  \textsc{Legatiuk}
+	\vfill
+
+% Bottom of the page
+	{\large \today\par}
+\end{titlepage}
+
+\chapter*{Declaration}
+We, the authors of this report, confirm that the work for the following report with the title: “Generating mathematical models by help of deep learning” was solely undertaken by
+ourselves and that no help was provided by other sources as those allowed. All sections of the report that uses quotes or describe an argument or concept developed by another author have been referenced, including all secondary literature used, to show that this material has been adopted to support this report.
+
+\vspace*{4em}\noindent
+\hfill%
+\begin{tabular}[t]{c}
+  \rule{10em}{0.4pt}\\ Karl Philipp Killian
+\end{tabular}%
+\hfill%
+\begin{tabular}[t]{c}
+  \rule{10em}{0.4pt}\\ Yohannes Gidey Zegeye
+\end{tabular}%
+\hfill\strut
+
+
+\chapter*{Abstract}
+In this report the students developed an approach for solving mathematical problems related to engineering by the help of deep learning. The goal is to extract boundary conditions and trigger words that determine type of word problems. The difficulty consists in finding an appropriate software library which can handle input of mathematical expressions within normal text. After a discovery phase we chose spaCy and its builtin NER system for information extraction. Owing the small amount of data a preprocessing is done, which provides a stronger bias. However, our results are a good demonstration what state-of-the-art CNN in the field of NLP is capable of achieving and are comparable to other research work that have been done. 
+
+\tableofcontents
+\chapter{Introduction}
+\input{chapters/introduction}
+
+\chapter{Related work}
+\input{chapters/relatedWork}
+
+\chapter{Preliminaries}
+\input{chapters/preliminaries}
+
+\chapter{Approach}
+\input{chapters/Approach}
+
+\chapter{Evaluation}
+\input{chapters/evaluation}
+
+\chapter{Conclusion}
+\input{chapters/conclusion}
+
+\printbibliography
+
+\appendix
+\chapter{Problem statements}
+\label{problems}
+
+\input{chapters/appendix}
+\chapter{Code}
+\label{Code}
+\input{chapters/appendixb}
+
+\end{document}
