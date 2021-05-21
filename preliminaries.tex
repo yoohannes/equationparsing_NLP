@@ -1,0 +1,39 @@
+Nearly everyone has heard the terms machine learning (ML), artificial intelligence (AI) and deep learning (DL). However, it can be difficult to classify these and bring them in a correct context with NLP. To ensure a uniform understanding, these terms are defined. 
+AI is the overarching discipline that covers anything related to making machines smart. Whether it is a robot, a refrigerator, a car, or a software application, if you are making them smart, then it is AI. ML is commonly used alongside AI but they are not the same thing. ML is a subset of AI, it refers to systems that can learn by themselves. Systems that get smarter and smarter over time without human intervention. DL is ML but applied to large complex data sets. Most AI work now involves ML because intelligent behavior requires considerable knowledge, and learning is the easiest way to get that knowledge. The image \ref{fig:overview} captures the relationship between AI, ML, and DL.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/overview.png}
+    \caption{Euler diagram}
+    \label{fig:overview}
+\end{figure}
+
+\section{NLP}
+Natural Language Processing (NLP) attempts to capture natural language and process it in a computer-based way using rules and algorithms. NLP uses a variety of methods and results from the field of linguistics and combines them with computer science and artificial intelligence \parencite{liddy2001natural}.
+For a better understanding figure \ref{fig:phases} defines phases of analysis in processing natural language. The phases can also be considered as individual tasks. It is sufficient to consider for this problem the first four stages \parencite{indurkhya2010handbook}.
+  
+\begin{figure}[h]
+    \centering
+    \resizebox{1\textwidth}{!}{
+    \input{images/flowchart}
+    }
+    \caption{Phases of analysis in processing natural language}
+    \label{fig:phases}
+\end{figure}
+
+\begin{description}
+
+\item[Tokenization]\hfill \\
+Tokenization and putting sentences into certain segments is a very important step, as you cannot take it for granted that text is well formatted and structured, for example in the case of delimiters. Furthermore, in some languages like Chinese and Japanese there is the difficulty of not having an easy space limiter as in the English language. However, text preprocessing is a crucial step for the following stages and can be challenging depending on the given input.
+
+\item[Lexical analysis]\hfill \\
+Now we have given individual words, which are in need of closer inspection. This tasks touches the domain of morphology. The words will be classified by their rank of meaning and independence to other words. By decomposing the words a large amount of rules have to be taken into account. Conversion is one of these rules, which allows to create a new word from an existing word by not changing its form. This word formation works for nouns to verbs and vice versa. Also, conversions from adjectives to nouns are possible, for example, pet $\rightarrow$ to pet; innocent $\rightarrow$ the innocent.
+
+\item[Syntactic analysis]\hfill \\
+In this part the check if the sentence is conform with formal grammar is done. The sentence is parsed by getting information about the words which include certain meaning, depending on their sequence or structure. Though a sentence can be syntactically correct, it can be semantically incorrect. For example, "cows flow supremely" is grammatically valid but it is senseless.
+
+\item[Semantic analysis]\hfill \\
+Semantic analysis is the process of understanding the meaning and interpretation of words, signs and sentence structure. This lets computers partly understand natural language the way humans do. Semantic analysis is one of the toughest parts of NLP and it is not fully solved yet. Also our solving approach with Named-entity recognition is located here. It is briefly described in the chapter 4.3.1.
+\end{description}
+
+For solving these tasks symbolic, statistical and nowadays neural network methods are used. This is due to the fact that the computing performance significantly increased over the time. Nevertheless the old methods are still used today. For example in the tokenization area symbolic methods are still en vogue.

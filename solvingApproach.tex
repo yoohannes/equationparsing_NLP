@@ -1,0 +1,110 @@
+As in the previous chapter described, we want as an output four different mathematical models (differential equation, boundary conditions, initial condition, inequalities for variables). Also the previously made simplifications regarding variables, constants, functional expressions, equations and inequalities in order to create a strong bias. Since we have not much examples this. In general a preprocessing of data is advised.
+
+Our approach starts with preparing the word problem data sets . from our data we need to extract information that will help us formulate the mathematical model from the given text. There are different ways we can do it but the major ones are using a deep learning algorithm or by using a pattern matching using regular expression for instance. 
+Using regex (ruled based) we can use different patterns to extract different information, but This is particularly difficult because it’s a tasking to have a single pattern or even multiple patterns that can satisfy every condition or info that we want. 
+Thus, we will use deep learning and packages with different models to handle post tagging and custom NER to train a model that can be used to extract required information. 
+
+\section{Data understanding} 
+Our task is to formalize a verbal description of engineering problem into mathematical model using expressions and equations. As such we need to understand the type of text available to prepare it to the modelling stage. 
+The first step is the data acquisition which was gathered from collection of problems on mathematical physics BM budak .
+We consider problems in physical phenomenon such as heat conduction, diffusion, the propagation of electromagnetic waves in conducting media and the motion of viscous fluid . 
+BUMAK presents a series of boundary value problems where the physical process can be described by functions of two independent variables, time and coordinates.  
+The problems are of a different kind, ones of hyperbolic or parabolic with each determining the differential equation representing them. 
+From visual inspection of the data we can see that a pattern of information such as inequality equations, similar wording describing a condition that is useful for the formulation of equations.
+
+To state the boundary-value problem, corresponding to a given physical problem, means to choose a function describing the physical process, and then
+(1) derive the differential equation of this function,
+(2) establish boundary conditions for it,
+(3) formulate the initial conditions.
+
+Unfortunately finding a data set of similar problem statements is not easy so we have 20 data points to work with. 
+\begin{figure}
+    \centering
+    \includegraphics[width=17cm, height=13cm]{images/deepmodel_pipeline.PNG}
+    \caption{Deep model pipeline}
+    \label{fig:4 complete model procesies}
+\end{figure}
+
+
+\section{Data preparation} 
+ As a start to the Data  preprocessing stage, we transformed the text data into a suitable format for the modeling . 
+\subsection{annotation and cleaning data} 
+Semantic annotation is the task of annotating or labeling various concepts or tags within text, from a predefined categories such as people, objects, or company names. Machine learning models use semantically annotated data to learn how to categorize new concepts in new texts. 
+For our data we choose three labels initial condition, function and boundary condition to help train our formalization model. 
+
+Although there are tools to used for annotation purposes, we used a manual method since the data set are small in number. 
+Example here:::: 
+We cleaned the data by removing unnecessary spaces, commas and parenthesis so it can be easier for training .                                                 
+
+\subsection{Exploratory data analysis(EDA)}
+\subsubsection{Word embedding} 
+When dealing with natural language processing, the data is often in a text format. One way of representing the text is using a Word embedding technique where individual words are represented as real values vectors in a predefined vector space. Word embeddings are N-dimensional vectors that try to capture word meaning and context in their values. Each word is mapped to one vector and the vector values are learned in a way that resembles a neutral network. This is done by algorithms that cluster similar words together and projects it in multiple dimension of vectors. 
+For example, a document d = w1; w2; : : : ; wjdj will be
+presented by
+
+  There are a lot of word embedding algorithms developed with Word2Vec being the most famous. GloVe and fasttext are also other algorithms in the industry. Spacy uses  word2vec on its pretrained English model. Word2vec takes as its input a large corpus of text and produces a vector space with each unique word in the corpus being assigned a corresponding vector in the space.  
+We split the data 80/20 % between train and test data
+
+\section{Modelling} 
+
+In NLP most tasks such as tagger, parser,text categorizer and many other functionalities are product of statistical models. To extract the information embedded in the texts we will use a technique called NAMED ENTITY RECOGNITION. 
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics{images/spacys_NER_model.png}
+    \caption{NER model of spacy}
+    \label{fig:NER}
+\end{figure}
+ 
+\subsection{Named entity recognition(NER)}
+NER is sub task of information extraction that seek to locate and classify named entities mentioned in unstructured text into predefined categories such as person names, organization,location, medical codes, time expression,quantities, monetary values, etc.  
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics{images/NER_annotation.png}
+    \caption{NER model of spacy}
+    \label{fig:annotationl}
+\end{figure} 
+With NER we can identify the meaning of Apple to mean the company apple and not the fruit which can be a node in a knowledge base outside of the linguistic network. 
+Similar to the other NLP tasks mentioned above, this also is done by statistical Machine leaning algorithms such as RNN, LSTM, random forest or feed forward neural network. 
+
+\subsubsection{Spacys NER model} 
+Instead of looking at the labeled text and its meaning NER looks into the surrounding words and try to figure out what the labeled word mean. Spacy uses a new deep learning concept called embed, encode, attend, predict.
+
+    Embed is a process of turning a text or sparse ,binary vectors into shorter ,dense vectors using a bloom embedding algorithm or hash embed. This takes a different approach to the common embedding representations. 
+    
+ Bloom embedding algorithm 
+
+
+
+
+Encode is a process that converts a sequence of word vectors into a sentence matrix where each row represents a meaning of each token in the context of the rest of the sentence there by capturing the semantic representation by using a convolutional neural network. 
+Convolutional neural network 
+Are several layers of convolutions, which is alinear operation that involves the multiplication of a set of weights with inputs much like traditional neural network, with non linear activation functions applied to the outputs .
+Attend is a process of reducing the sentence matrix representation of the encoding output into a single vector using the Attention mechanism
+Attention mechanism   
+Is a technique that mimics cognitive attention ,which means the network focuses its memory into important parts of the data it processes. 
+
+Lastly predict is a mechanism of predicting given label with a simple multi layer percepton given an input.
+With this 4 principles spacys NER can be used to extract information from our math word problems. 
+Bus since the NER model english model is trained on a common conversational English we can customize the model by training it with our own corpus . 
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[width=16cm,height=5cm]{images/spacy_NLP_pipeline.png}
+    \caption{NLP pipepline for spacy}
+    \label{fig:NLP pipelinel}
+\end{figure} 
+ 
+Using spacy we will custom build the NER model and the leave the other models intact to get the document object from the input text. 
+
+Result
+When formulating the mathematical equations what we need from the model is semantically correct inputs or know value. Thus we have boundary conditions and initial conditions from the semantic.
+
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[width=17cm,height=4cm]{images/displacy_NER_result.png}
+    \caption{visualization of NER model output}
+    \label{fig:NLP Visulaizationl}
+\end{figure} 
+From figure above we can see the initial condition label was missed by our model so we have to retrain it until we have the most possible fit. 
+Because it might be an overdue/overkill  to use a machine learning algorithm to classify the problems, we used a basic conditional statements to overcome the classification.
+
+For the functional equation formulation The regex can only handles patterns of the problems given and a variation or change of pattern must be added to handle new patterns and conditions. 

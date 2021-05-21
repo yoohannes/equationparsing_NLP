@@ -1,0 +1,49 @@
+
+Using our method of mixing regex based and deep learning models to formulate mathematical equation from a given mathematical problem, we get a result that is not perfect but promising. 
+Since the core of information extraction is used by the help of deep learning, we use the common methods, which is using precision, recall and F1-score to evaluate our model. We also incorporated conditional statements and regex to extract trigger words but we wont be evaluating that since its not part of the deep learning model. 
+
+\begin{description}
+\item[Precision]\hfill \\
+Precision by definition is the number correctly predicted label out of the whole label prediction. 
+ 
+ \[ precision=\frac{TP}{TP+FP}\]
+
+In our context for instance the precision for the label boundary value would be the number of correctly predicted boundary value over the every predicted boundary value.
+
+\item[Recall]\hfill \\
+Recall is the number of true actual label out of all actual label.
+
+\[precision=\frac{TP}{TP+FN}\]
+
+Meaning how many of the actual label was predicted correctly. In comparison of precision, which measures quality recall indicates quantity of the model.
+
+\item[F1-score]\hfill \\
+With precision focusing on the prediction proportions and recall focusing on actual labels we have a F1-score measure that balances between the two measures and its given by the following equation:
+
+    \[F1=\frac{2*recall*precision}{precision+recall}\]
+
+
+
+
+\end{description}
+
+\newpage
+With our model for the predicted two labels of boundary condition and initial condition we have the following measures. 
+
+
+\begin{table}[ht]
+    \begin{center}
+    \label{tab:my_label}
+    \begin{tabular}{p{100pt}|p{60pt}|p{60pt}|p{60pt}}
+        Label    & Precision &   Recall    &    F1-score \\
+        \hline
+        boundary condition &66.66\% & 54.54\%& 60.0\% \\
+        initial condition &100\% & 50\% & 66.66\%
+
+    \end{tabular}
+    \end{center}
+    \caption{PRF measure of our model}
+
+\end{table}
+
+Considering the complexity of the problem and the limited data used around 60\% of F1 score, as shown in table \ref{tab:my_label}, is satisfactory. These results are similar to other approaches such as \cite{wang2017deep} et al., which are in the range of 60\%-80\%. Nevertheless the achieved accuracy is not high enough to use this model for a reliable prediction, considering that 1 is perfect and 0 total failure.
